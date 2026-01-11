@@ -488,94 +488,123 @@ footer {
     }
 
     .lore-container {
-
-        /* Mobile Header */
-        header {
-            padding: 0.5rem 1rem;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-
-        .logo-container {
-            font-size: 1.2rem;
-        }
-
-        nav ul {
-            gap: 0.8rem;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        nav a {
-            font-size: 0.8rem;
-            /* Smaller text for menu */
-        }
-
-        .header-actions {
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            margin-top: 0.5rem;
-        }
-
-        /* Mobile Hero */
-        .hero {
-            padding-top: 11rem;
-            /* Adjust for stacked header */
-            padding-bottom: 2rem;
-        }
-
-        .hero h1 {
-            font-size: 13vw;
-            line-height: 1.1;
-            margin-bottom: 1rem;
-        }
-
-        .hero p {
-            font-size: 1rem;
-            padding-left: 0.5rem;
-            border-left-width: 2px;
-        }
-
-        /* Text Balance */
-        .card {
-            padding: 1.5rem;
-        }
-
-        .card h3 {
-            font-size: 1.5rem;
-        }
-
-        .lore-container {
-            padding: 1.5rem;
-        }
-
-        .lore-text p {
-            text-align: left;
-            /* Easier to read on mobile */
-        }
-
-        .section-title {
-            font-size: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .contract-box {
-            max-width: 90vw;
-            font-size: 0.75rem;
-            padding: 0.6rem;
-        }
-
-        .contract-address {
-            font-size: 0.75rem;
-        }
-
-        .cta-group {
-            width: 100%;
-            padding: 0;
-        }
-
-        .btn {
-            width: 100%;
-        }
+        padding: 1.5rem;
     }
+
+    /* Mobile Header - Horizontal Layout */
+    header {
+        padding: 0.5rem;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .logo-container {
+        font-size: 1.2rem;
+    }
+
+    nav ul {
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: center;
+        gap: 1rem;
+        width: 100%;
+        overflow-x: auto;
+        /* Allow scroll if very small */
+    }
+
+    nav a {
+        font-size: 0.75rem;
+        white-space: nowrap;
+        padding: 0.2rem 0;
+    }
+
+    .header-actions {
+        display: none;
+        /* Hide lang switch to save space/focus on menu? Or keep it? User asked for menu horizontal. Let's keep it but compact */
+        margin-top: 0;
+    }
+
+    /* Make lang switch very small or hide if not critical.
+       Let's keep it but smaller */
+    .lang-switch {
+        padding: 0.2rem 0.6rem;
+        font-size: 0.7rem;
+    }
+
+    /* Mobile Hero */
+    .hero {
+        padding-top: 9rem;
+        padding-bottom: 2rem;
+    }
+
+    .hero h1 {
+        font-size: 13vw;
+        line-height: 1.1;
+        margin-bottom: 1rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
+        padding-left: 0.5rem;
+        border-left-width: 2px;
+    }
+
+    /* Smartphone Novel Style for Origin Story */
+    #full-story {
+        background: #111;
+        /* Darker, solid background for readability */
+        padding: 1.5rem;
+        border-radius: 8px;
+        border: 1px solid var(--accent-purple);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+        margin-top: 1.5rem;
+    }
+
+    #full-story p {
+        text-align: left;
+        line-height: 2.2;
+        /* Spacious line height */
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+        letter-spacing: 0.05em;
+        color: #ddd;
+    }
+
+    /* Text Balance */
+    .card {
+        padding: 1.5rem;
+    }
+
+    .card h3 {
+        font-size: 1.5rem;
+    }
+
+    .lore-text p {
+        text-align: left;
+        /* Easier to read on mobile */
+    }
+
+    .section-title {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    .contract-box {
+        max-width: 90vw;
+        font-size: 0.75rem;
+        padding: 0.6rem;
+    }
+
+    .contract-address {
+        font-size: 0.75rem;
+    }
+
+    .cta-group {
+        width: 100%;
+        padding: 0;
+    }
+
+    .btn {
+        width: 100%;
+    }
+}
