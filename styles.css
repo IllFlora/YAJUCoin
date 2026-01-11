@@ -546,7 +546,12 @@ footer {
     }
 
     .header-actions {
-        display: none;
+        /* User requested lang switch on mobile */
+        display: block;
+        margin-top: 0.5rem;
+        width: 100%;
+        display: flex;
+        justify-content: center;
     }
 
     /* Keep lang switch compact if we decide to show it,
