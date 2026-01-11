@@ -17,6 +17,28 @@ window.addEventListener('scroll', function () {
     }
 });
 
+// Mobile Menu Logic
+const menuToggle = document.querySelector('.menu-toggle');
+const menuClose = document.querySelector('.menu-close');
+const nav = document.querySelector('nav'); // Use tag name or id if specific
+
+if (menuToggle && nav && menuClose) {
+    menuToggle.addEventListener('click', () => {
+        nav.classList.add('active');
+    });
+
+    menuClose.addEventListener('click', () => {
+        nav.classList.remove('active');
+    });
+
+    // Close menu when clicking a link
+    nav.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            nav.classList.remove('active');
+        });
+    });
+}
+
 // Language Switcher
 const langToggle = document.getElementById('langToggle');
 let currentLang = 'ja';
