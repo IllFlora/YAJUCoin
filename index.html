@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YAJUCoin | オフィシャルサイト</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <header>
+        <a href="#" class="logo-container">
+            <img src="assets/logo.png" alt="YAJUCoin Logo" class="logo-img-sm">
+            <span>YAJUCoin</span>
+        </a>
+        <nav>
+            <ul>
+                <li><a href="#origin" data-ja="由来" data-en="Origin">由来</a></li>
+                <li><a href="#community" data-ja="コミュニティ" data-en="Community">コミュニティ</a></li>
+                <!-- Countdown Link (Auto-hides after Jan 15) -->
+                <li id="nav-countdown"><a href="countdown.html"
+                        style="color: var(--accent-pink); text-shadow: 0 0 5px var(--accent-pink);">COUNTDOWN</a></li>
+            </ul>
+        </nav>
+        <div class="header-actions">
+            <button class="lang-switch" id="langToggle">EN / JA</button>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <canvas id="matrixCanvas"></canvas>
+            <img src="assets/logo.png" alt="YAJUCoin" class="hero-logo">
+            <h1 data-ja="YAJUCoin" data-en="YAJUCoin">YAJUCoin</h1>
+            <p data-ja="いいよ！こいよ！ブロックチェーンの裏側まで！" data-en="Good! Come on! To the other side of the Blockchain!">
+                いいよ！こいよ！ブロックチェーンの裏側まで！</p>
+
+            <div class="contract-box" onclick="copyAddress()">
+                <span class="contract-address">CA: BRrc4qh3t1wp...5pump (Click)</span>
+                <span class="copy-icon">📋</span>
+            </div>
+
+            <div class="cta-group">
+                <a href="https://dexscreener.com/solana/3hryvwmvqr25yta2p8xetpmtbx44ux2nrpajjkhnxcbz" target="_blank"
+                    class="btn btn-secondary" style="text-decoration:none; display:inline-block;"
+                    data-ja="DexScreenerでチャートを見る" data-en="View Chart on DexScreener">DexScreenerでチャートを見る</a>
+            </div>
+        </section>
+
+        <!-- Concept Section -->
+        <section id="concept">
+            <h2 class="section-title">Concept</h2>
+            <div class="grid-3">
+                <div class="card">
+                    <h3>Vibes</h3>
+                    <p data-ja="圧倒的な「野獣」の波動を感じろ。理屈じゃない、バイブスで買え。"
+                        data-en="Feel the overwhelming 'Beast' vibes. Don't think, just buy with vibes.">
+                        圧倒的な「野獣」の波動を感じろ。理屈じゃない、バイブスで買え。</p>
+                </div>
+                <div class="card">
+                    <h3>HODL</h3>
+                    <p data-ja="枕をでかくして眠れ。ガチホこそが正義。暴落？聞こえんなあ！"
+                        data-en="Sleep with a huge pillow. HODL is justice. Dip? I can't hear you!">
+                        枕をでかくして眠れ。ガチホこそが正義。暴落？聞こえんなあ！</p>
+                </div>
+                <div class="card">
+                    <h3>Community</h3>
+                    <p data-ja="屋上であおう。世界中の淫夢厨たちと結束せよ。"
+                        data-en="Meet entirely on the rooftop. Unite with Beasts all over the world.">
+                        屋上であおう。世界中の淫夢厨たちと結束せよ。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Lore Section -->
+        <section id="origin">
+            <div class="lore-container">
+                <h2 class="section-title" data-ja="Origin Story" data-en="Origin Story">Origin Story</h2>
+                <div class="lore-text">
+                    <p data-ja="ネットの深淵、下北沢から生まれし「野獣先輩」。彼は単なるネタではない。時代を超越した概念だ。"
+                        data-en="Born from the depths of the internet, Shimokitazawa. 'Yaju Senpai' is not just a meme. He is a concept that transcends time.">
+                        ネットの深淵、下北沢から生まれし「野獣先輩」。彼は単なるネタではない。時代を超越した概念だ。</p>
+                    <p style="margin-top: 1rem;" data-ja="このコインは、その「揺るぎない存在感」への、狂気にも似た情熱から生まれた。"
+                        data-en="This coin was born from a passion bordering on madness for his 'unwavering presence'.">
+                        このコインは、その「揺るぎない存在感」への、狂気にも似た情熱から生まれた。</p>
+
+                    <div id="full-story" class="hidden">
+                        <p style="margin-bottom: 1rem; color: #fff;">
+                            [ACCESS GRANTED: LEVEL 114514] <br>
+                            なぜ我々はYAJUCoinを作ったのか？<br>
+                            それは、彼が教えてくれたからだ。「汚名」さえも「伝説」に変えられることを。<br>
+                            数多のミームが生まれては消える中、彼は20年以上もネットの王として君臨し続けている。<br>
+                            その「不死性」をブロックチェーンに刻み込み、永遠のものとするために、我々は立ち上がった。
+                        </p>
+                        <p style="color: #fff;">
+                            これは単なる悪ふざけではない。<br>
+                            <span style="color:var(--accent-pink); font-weight:900;">愛</span>だ。
+                            <span style="color:var(--accent-green); font-weight:900;">情熱</span>だ。
+                            そして<span style="color:var(--accent-cyan); font-weight:900;">カルチャー</span>そのものだ。<br>
+                            さあ、枕をでかくして眠れ。伝説は終わらない。
+                        </p>
+                    </div>
+
+                    <button id="read-more-btn" class="btn btn-secondary" style="margin-top: 2rem;"
+                        onclick="toggleStory()" data-ja="続きを読む" data-en="Read More">続きを読む</button>
+
+                    <div style="margin-top: 2rem; opacity: 0.3; font-size: 0.8rem;">
+                        <a href="dialogue.html" style="color: var(--text-secondary); text-decoration: none;">📁</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Community Section (Placeholder for link target) -->
+        <section id="community"></section>
+
+    </main>
+
+    <footer>
+        <div class="social-links">
+            <a href="https://x.com/i/communities/2007997043399401722" class="social-icon" target="_blank">X</a>
+            <a href="https://t.me/+plJ6Ch0PkkE0NGFl" class="social-icon" target="_blank">Telegram</a>
+            <a href="https://dexscreener.com/solana/3hryvwmvqr25yta2p8xetpmtbx44ux2nrpajjkhnxcbz" class="social-icon"
+                target="_blank">DEX</a>
+        </div>
+        <p class="copyright">© 2026 YAJUCoin Project. All Rights Reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
