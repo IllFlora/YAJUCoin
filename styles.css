@@ -546,12 +546,13 @@ footer {
     }
 
     .header-actions {
-        /* User requested lang switch on mobile */
-        display: block;
+        display: flex !important;
         margin-top: 0.5rem;
         width: 100%;
-        display: flex;
         justify-content: center;
+        align-items: center;
+        padding-bottom: 0.5rem;
+        /* Ensure space before border */
     }
 
     /* Keep lang switch compact if we decide to show it,
