@@ -1,0 +1,493 @@
+:root {
+    --bg-dark: #050505;
+    /* Blacker */
+    --bg-card: rgba(20, 20, 25, 0.8);
+    --accent-green: #00ff88;
+    --accent-orange: #ff8c42;
+    --accent-cyan: #00fff9;
+    --accent-purple: #9d00ff;
+    /* New Cyber Color */
+    --accent-pink: #ff0055;
+    /* New Cyber Color */
+    --text-primary: #e0e0e0;
+    --text-secondary: #a1a1aa;
+    --font-primary: 'Noto Sans JP', sans-serif;
+    --font-mono: 'Courier New', monospace;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-primary);
+    font-family: var(--font-primary);
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+/* Cyber Grid Background */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background:
+        linear-gradient(rgba(5, 5, 5, 0.92), rgba(5, 5, 5, 0.92)),
+        linear-gradient(90deg, rgba(157, 0, 255, 0.1) 1px, transparent 1px),
+        linear-gradient(rgba(157, 0, 255, 0.1) 1px, transparent 1px);
+    background-size: 100% 100%, 50px 50px, 50px 50px;
+    z-index: -1;
+    pointer-events: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.2s ease;
+}
+
+ul {
+    list-style: none;
+}
+
+/* Header - Cyber Style */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    backdrop-filter: blur(5px);
+    background: rgba(5, 5, 5, 0.8);
+    border-bottom: 2px solid var(--accent-purple);
+    box-shadow: 0 0 15px rgba(157, 0, 255, 0.3);
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    font-weight: 900;
+    font-size: 1.4rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.logo-container span {
+    text-shadow: 2px 2px 0px var(--accent-pink);
+}
+
+.logo-img-sm {
+    width: 36px;
+    height: 36px;
+    border-radius: 5px;
+    /* Square off slightly */
+    border: 1px solid var(--accent-cyan);
+}
+
+nav ul {
+    display: flex;
+    gap: 2rem;
+}
+
+nav a {
+    font-size: 0.9rem;
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    letter-spacing: 1px;
+    position: relative;
+}
+
+nav a:hover {
+    color: var(--accent-cyan);
+    text-shadow: 0 0 5px var(--accent-cyan);
+}
+
+nav a::before {
+    content: '>';
+    opacity: 0;
+    margin-right: 5px;
+    color: var(--accent-pink);
+    transition: opacity 0.2s;
+}
+
+nav a:hover::before {
+    opacity: 1;
+}
+
+.lang-switch {
+    font-family: var(--font-mono);
+    color: #000;
+    background: var(--accent-cyan);
+    border: none;
+    padding: 0.5rem 1rem;
+    clip-path: polygon(10% 0, 100% 0, 100% 70%, 90% 100%, 0 100%, 0 30%);
+    /* Futuristic Shape */
+    font-size: 0.9rem;
+    font-weight: 900;
+    cursor: pointer;
+    box-shadow: 4px 4px 0px var(--accent-purple);
+    transition: all 0.2s;
+}
+
+.lang-switch:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0px var(--accent-purple);
+    background: #fff;
+}
+
+/* Matrix Canvas */
+#matrixCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    opacity: 0.2;
+}
+
+/* Hero Section */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 8rem 2rem 4rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-logo {
+    width: 250px;
+    height: 250px;
+    margin-bottom: 2rem;
+    border-radius: 50%;
+    border: 4px solid rgba(0, 255, 136, 0.5);
+    box-shadow:
+        0 0 80px rgba(0, 255, 136, 0.3),
+        inset 0 0 40px rgba(0, 255, 136, 0.2);
+    animation: float 6s ease-in-out infinite, pulseGlow 4s infinite alternate;
+}
+
+@keyframes pulseGlow {
+    from {
+        box-shadow: 0 0 60px rgba(0, 255, 136, 0.4);
+        border-color: rgba(0, 255, 136, 0.5);
+    }
+
+    to {
+        box-shadow: 0 0 100px rgba(0, 255, 136, 0.7);
+        border-color: rgba(0, 255, 136, 0.9);
+    }
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-15px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+.hero h1 {
+    font-size: 5rem;
+    font-weight: 900;
+    margin-bottom: 0.5rem;
+    color: #fff;
+    text-shadow: 4px 4px 0px var(--accent-purple);
+    letter-spacing: -2px;
+    position: relative;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    color: var(--text-primary);
+    margin-bottom: 2rem;
+    max-width: 600px;
+    font-family: var(--font-mono);
+    border-left: 3px solid var(--accent-green);
+    padding-left: 1rem;
+    background: linear-gradient(90deg, rgba(0, 255, 136, 0.1), transparent);
+}
+
+/* Contract Address */
+.contract-box {
+    display: flex;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid var(--accent-green);
+    padding: 1rem 1.5rem;
+    margin-bottom: 2.5rem;
+    gap: 1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: var(--font-mono);
+    box-shadow: 0 0 10px rgba(0, 255, 136, 0.2);
+    position: relative;
+}
+
+.contract-box::before {
+    content: "COPY";
+    position: absolute;
+    right: -10px;
+    top: -10px;
+    background: var(--accent-green);
+    color: #000;
+    font-size: 0.7rem;
+    padding: 2px 6px;
+    font-weight: bold;
+}
+
+.contract-box:hover {
+    background: rgba(0, 255, 136, 0.1);
+    box-shadow: 0 0 20px rgba(0, 255, 136, 0.4);
+    transform: scale(1.02);
+}
+
+.contract-address {
+    font-size: 0.9rem;
+    color: var(--accent-green);
+    letter-spacing: 1px;
+}
+
+.copy-icon {
+    font-size: 1.1rem;
+}
+
+/* Buttons */
+.cta-group {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.btn {
+    padding: 1rem 2.5rem;
+    font-weight: 900;
+    font-size: 1rem;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: all 0.2s;
+    letter-spacing: 1px;
+    border: none;
+    position: relative;
+}
+
+.btn-secondary {
+    background: transparent;
+    color: var(--accent-cyan);
+    border: 2px solid var(--accent-cyan);
+    box-shadow: 0 0 15px rgba(0, 255, 249, 0.2);
+    clip-path: polygon(15% 0, 100% 0, 100% 70%, 85% 100%, 0 100%, 0 30%);
+}
+
+.btn-secondary:hover {
+    background: var(--accent-cyan);
+    color: #000;
+    box-shadow: 0 0 30px rgba(0, 255, 249, 0.6);
+    transform: translateY(-3px);
+}
+
+/* Sections General */
+section {
+    padding: 6rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.section-title {
+    font-size: 3rem;
+    margin-bottom: 4rem;
+    text-align: center;
+    position: relative;
+    text-transform: uppercase;
+    font-weight: 900;
+    text-shadow: 3px 3px 0px var(--accent-pink);
+}
+
+/* Concept Cards (Cyber Style) */
+.grid-3 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 3rem;
+}
+
+.card {
+    background: linear-gradient(135deg, rgba(20, 20, 30, 0.9), rgba(10, 10, 15, 0.95));
+    border: 1px solid var(--accent-purple);
+    padding: 2.5rem;
+    position: relative;
+    transition: transform 0.3s;
+    clip-path: polygon(0 0, 100% 0, 100% 85%, 85% 100%, 0 100%);
+    /* Tech Corner */
+}
+
+.card::before {
+    content: "";
+    /* Decorative line */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--accent-pink), var(--accent-purple));
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 30px rgba(157, 0, 255, 0.2);
+    border-color: var(--accent-pink);
+}
+
+.card h3 {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    color: var(--text-primary);
+    font-family: var(--font-mono);
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 0.5rem;
+    display: inline-block;
+}
+
+.card p {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    line-height: 1.8;
+}
+
+/* Lore Section */
+.lore-container {
+    background:
+        linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+        repeating-linear-gradient(45deg, rgba(157, 0, 255, 0.1) 0, rgba(157, 0, 255, 0.1) 10px, transparent 10px, transparent 20px);
+    padding: 4rem;
+    border: 1px solid var(--accent-cyan);
+    text-align: center;
+    position: relative;
+}
+
+.lore-container::after {
+    content: "SECRET_FILE_0810";
+    position: absolute;
+    bottom: 10px;
+    right: 20px;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--accent-cyan);
+    opacity: 0.6;
+}
+
+.lore-text {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+#full-story {
+    margin-top: 2rem;
+    text-align: left;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 2rem;
+    border-left: 4px solid var(--accent-pink);
+    display: none;
+    /* Hidden by default */
+}
+
+#full-story.visible {
+    display: block;
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hidden {
+    display: none;
+}
+
+/* Footer */
+footer {
+    border-top: 2px solid var(--accent-purple);
+    padding: 4rem 2rem;
+    text-align: center;
+    background: #000;
+    margin-top: 4rem;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin-bottom: 2rem;
+}
+
+.social-icon {
+    font-size: 1.2rem;
+    color: var(--accent-cyan);
+    font-family: var(--font-mono);
+    border: 1px solid var(--accent-cyan);
+    padding: 0.5rem 1.5rem;
+    transition: all 0.3s;
+    text-transform: uppercase;
+}
+
+.social-icon:hover {
+    background: var(--accent-cyan);
+    color: #000;
+    box-shadow: 0 0 20px var(--accent-cyan);
+}
+
+.copyright {
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    font-family: var(--font-mono);
+}
+
+/* Utilities */
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 3rem;
+    }
+
+    .hero-logo {
+        width: 180px;
+        height: 180px;
+    }
+
+    .grid-3 {
+        grid-template-columns: 1fr;
+    }
+
+    .lore-container {
+        padding: 2rem;
+    }
+}
