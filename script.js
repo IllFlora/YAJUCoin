@@ -58,6 +58,31 @@ if (langToggle) {
     }
 }
 
+// Music Player Logic
+const musicToggle = document.getElementById('musicToggle');
+const bgm = document.getElementById('bgm');
+
+if (musicToggle && bgm) {
+    // Set initial volume low to not startle users
+    bgm.volume = 0.3;
+
+    musicToggle.addEventListener('click', () => {
+        if (bgm.paused) {
+            bgm.play().then(() => {
+                musicToggle.textContent = "🎵 ON";
+                musicToggle.classList.add('playing');
+            }).catch(error => {
+                console.log("Playback failed:", error);
+                alert("Playback failed. Please interact with the document first.");
+            });
+        } else {
+            bgm.pause();
+            musicToggle.textContent = "🎵 OFF";
+            musicToggle.classList.remove('playing');
+        }
+    });
+}
+
 // Matrix Rain Animation (810 Ver.)
 // Matrix Rain Animation (810 Ver.)
 const canvas = document.getElementById('matrixCanvas');
