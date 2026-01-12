@@ -152,6 +152,34 @@ nav a:hover::before {
     background: #fff;
 }
 
+/* Music Toggle Button */
+.music-toggle {
+    font-family: var(--font-mono);
+    color: #000;
+    background: var(--accent-orange);
+    border: none;
+    padding: 0.5rem 1rem;
+    clip-path: polygon(10% 0, 100% 0, 100% 70%, 90% 100%, 0 100%, 0 30%);
+    font-size: 0.9rem;
+    font-weight: 900;
+    cursor: pointer;
+    box-shadow: 4px 4px 0px var(--accent-purple);
+    transition: all 0.2s;
+    margin-right: 1rem;
+    /* Space between buttons */
+}
+
+.music-toggle:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0px var(--accent-purple);
+    background: #fff;
+}
+
+.music-toggle.playing {
+    background: var(--accent-green);
+    box-shadow: 4px 4px 0px var(--accent-cyan);
+}
+
 /* Matrix Canvas */
 #matrixCanvas {
     position: fixed;
