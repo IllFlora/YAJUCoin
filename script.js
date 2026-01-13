@@ -147,8 +147,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Anniversary Logic
     // [TEST MODE] Set target date to past to show "114514 DAY"
-    const TARGET_DATE = new Date().getTime() - 10000;
-    // const TARGET_DATE = new Date("2026-01-14T05:14:00+09:00").getTime();
+    // const TARGET_DATE = new Date().getTime() - 10000;
+    const TARGET_DATE = new Date("2026-01-14T05:14:00+09:00").getTime();
     const EXPIRATION_DATE = new Date("2026-01-15T00:00:00+09:00").getTime();
 
     function checkAnniversary() {
