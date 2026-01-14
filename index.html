@@ -6,6 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>YAJUCoin | オフィシャルサイト</title>
 
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+
     <!-- OGP Settings -->
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="YAJUCoin">
@@ -26,6 +32,10 @@
 </head>
 
 <body>
+    <!-- Loading Screen -->
+    <div id="loader">
+        <div class="console-text" id="console-output"></div>
+    </div>
 
     <header>
         <a href="#" class="logo-container">
@@ -36,20 +46,9 @@
             <ul>
                 <li><a href="#origin" data-ja="由来" data-en="Origin">由来</a></li>
                 <li><a href="#community" data-ja="コミュニティ" data-en="Community">コミュニティ</a></li>
-                <!-- Countdown Link (Auto-hides after Jan 15) -->
-                <li id="nav-countdown"><a href="countdown.html"
-                        style="color: var(--accent-pink); text-shadow: 0 0 5px var(--accent-pink);">COUNTDOWN</a></li>
             </ul>
         </nav>
-        <!-- Burger buttons hidden/removed for horizontal layout -->
-        <!-- <button class="menu-toggle">☰</button> -->
 
-        <!-- The following nav and button were not present in the original document,
-             but the instruction implies they should be commented out if they were.
-             Since they are not present, we will just add the comments as per the instruction. -->
-        <!-- <nav id="main-nav"> -->
-        <!-- <button class="menu-close">✕</button> -->
-        <!-- <ul> -->
         <div class="header-actions">
             <!-- Audio Element (Added) -->
             <audio id="bgm" loop>
@@ -78,8 +77,9 @@
 
             <div class="cta-group">
                 <a href="https://dexscreener.com/solana/3hryvwmvqr25yta2p8xetpmtbx44ux2nrpajjkhnxcbz" target="_blank"
-                    class="btn btn-secondary" style="text-decoration:none; display:inline-block;"
-                    data-ja="DexScreenerでチャートを見る" data-en="View Chart on DexScreener">DexScreenerでチャートを見る</a>
+                    rel="noopener noreferrer" class="btn btn-secondary"
+                    style="text-decoration:none; display:inline-block;" data-ja="DexScreenerでチャートを見る"
+                    data-en="View Chart on DexScreener">DexScreenerでチャートを見る</a>
             </div>
         </section>
 
@@ -121,14 +121,18 @@
                         このコインは、その「揺るぎない存在感」への、狂気にも似た情熱から生まれた。</p>
 
                     <div id="full-story" class="hidden">
-                        <p style="margin-bottom: 1rem; color: #fff;">
+                        <p style="margin-bottom: 1rem; color: #fff;"
+                            data-ja="[ACCESS GRANTED: LEVEL 114514] <br>なぜ我々はYAJUCoinを作ったのか？<br>それは、彼が教えてくれたからだ。「汚名」さえも「伝説」に変えられることを。<br>数多のミームが生まれては消える中、彼は20年以上もネットの王として君臨し続けている。<br>その「不死性」をブロックチェーンに刻み込み、永遠のものとするために、我々は立ち上がった。"
+                            data-en="[ACCESS GRANTED: LEVEL 114514] <br>Why did we create YAJUCoin?<br>Because he taught us. That even 'infamy' can be turned into 'legend'.<br>While countless memes are born and die, he has reigned as the King of the Internet for over 20 years.<br>We stood up to engrave that 'immortality' into the blockchain and make it eternal.">
                             [ACCESS GRANTED: LEVEL 114514] <br>
                             なぜ我々はYAJUCoinを作ったのか？<br>
                             それは、彼が教えてくれたからだ。「汚名」さえも「伝説」に変えられることを。<br>
                             数多のミームが生まれては消える中、彼は20年以上もネットの王として君臨し続けている。<br>
                             その「不死性」をブロックチェーンに刻み込み、永遠のものとするために、我々は立ち上がった。
                         </p>
-                        <p style="color: #fff;">
+                        <p style="color: #fff;"
+                            data-ja="これは単なる悪ふざけではない。<br><span style='color:var(--accent-pink); font-weight:900;'>愛</span>だ。<span style='color:var(--accent-green); font-weight:900;'>情熱</span>だ。そして<span style='color:var(--accent-cyan); font-weight:900;'>カルチャー</span>そのものだ。<br>さあ、枕をでかくして眠れ。伝説は終わらない。"
+                            data-en="This is not just a prank.<br>It is <span style='color:var(--accent-pink); font-weight:900;'>LOVE</span>. It is <span style='color:var(--accent-green); font-weight:900;'>PASSION</span>. And it is <span style='color:var(--accent-cyan); font-weight:900;'>CULTURE</span> itself.<br>Now, sleep with a huge pillow. The legend never ends.">
                             これは単なる悪ふざけではない。<br>
                             <span style="color:var(--accent-pink); font-weight:900;">愛</span>だ。
                             <span style="color:var(--accent-green); font-weight:900;">情熱</span>だ。
@@ -138,7 +142,8 @@
                     </div>
 
                     <button id="read-more-btn" class="btn btn-secondary" style="margin-top: 2rem;"
-                        onclick="toggleStory()" data-ja="続きを読む" data-en="Read More">続きを読む</button>
+                        onclick="toggleStory()" data-ja="続きを読む" data-en="Read More" data-ja-open="続きを読む"
+                        data-en-open="Read More" data-ja-close="閉じる" data-en-close="Close">続きを読む</button>
 
                     <div style="margin-top: 2rem; opacity: 0.3; font-size: 0.8rem;">
                         <a href="dialogue.html" style="color: var(--text-secondary); text-decoration: none;">📁</a>
@@ -154,10 +159,12 @@
 
     <footer>
         <div class="social-links">
-            <a href="https://x.com/i/communities/2007997043399401722" class="social-icon" target="_blank">X</a>
-            <a href="https://t.me/+plJ6Ch0PkkE0NGFl" class="social-icon" target="_blank">Telegram</a>
+            <a href="https://x.com/i/communities/2007997043399401722" class="social-icon" target="_blank"
+                rel="noopener noreferrer">X</a>
+            <a href="https://t.me/+plJ6Ch0PkkE0NGFl" class="social-icon" target="_blank"
+                rel="noopener noreferrer">Telegram</a>
             <a href="https://dexscreener.com/solana/3hryvwmvqr25yta2p8xetpmtbx44ux2nrpajjkhnxcbz" class="social-icon"
-                target="_blank">DEX</a>
+                target="_blank" rel="noopener noreferrer">DEX</a>
         </div>
         <p class="copyright">© 2026 YAJUCoin Project. All Rights Reserved.</p>
     </footer>
