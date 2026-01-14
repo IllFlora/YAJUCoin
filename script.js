@@ -1,5 +1,57 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+    // Loading Animation (Cyber Console)
+    const loader = document.getElementById('loader');
+    const consoleOutput = document.getElementById('console-output');
+
+    // Check if visited in this session
+    if (sessionStorage.getItem('visited')) {
+        // Second visit: Hide immediately
+        if (loader) {
+            loader.style.display = 'none';
+            loader.classList.add('loaded'); // Ensure state
+        }
+    } else {
+        // First visit: Play Animation
+
+        // Lock scroll during loading
+        document.body.style.overflow = 'hidden';
+
+        if (loader && consoleOutput) {
+            const logs = [
+                "CONNECTING TO YAJU NETWORK..."
+            ];
+
+            let delaySum = 0;
+
+            logs.forEach((log, index) => {
+                // Randomize delay slightly for realism
+                const delay = Math.random() * 300 + 400; // 400-700ms
+                delaySum += delay;
+
+                setTimeout(() => {
+                    const p = document.createElement('div');
+                    p.textContent = `> ${log}`;
+                    consoleOutput.appendChild(p);
+                    window.scrollTo(0, 0);
+
+                    // If last log, finish loading
+                    if (index === logs.length - 1) {
+                        // Extended wait time: 1500ms
+                        setTimeout(() => {
+                            loader.classList.add('loaded');
+                            document.body.style.overflow = ''; // Unlock scroll
+                            sessionStorage.setItem('visited', 'true'); // Mark as visited
+                        }, 1500);
+                    }
+                }, delaySum);
+            });
+        } else {
+            // Safe fallback if element missing
+            document.body.style.overflow = '';
+        }
+    }
+
     // Make copyAddress global so it can be called from HTML onclick
     window.copyAddress = function () {
         const address = "BRrc4qh3t1wpE97FETgea1DEefu8A95Cu3g9vcN5pump";
@@ -22,28 +74,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Mobile Menu Logic
-    const menuToggle = document.querySelector('.menu-toggle');
-    const menuClose = document.querySelector('.menu-close');
-    const nav = document.querySelector('nav');
-
-    if (menuToggle && nav && menuClose) {
-        menuToggle.addEventListener('click', () => {
-            nav.classList.add('active');
-        });
-
-        menuClose.addEventListener('click', () => {
-            nav.classList.remove('active');
-        });
-
-        // Close menu when clicking a link
-        nav.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                nav.classList.remove('active');
-            });
-        });
-    }
-
     // Language Switcher
     const langToggle = document.getElementById('langToggle');
     let currentLang = 'ja';
@@ -57,7 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
         function updateLanguage() {
             const elements = document.querySelectorAll('[data-ja]');
             elements.forEach(el => {
-                el.textContent = el.getAttribute(`data-${currentLang}`);
+                el.innerHTML = el.getAttribute(`data-${currentLang}`);
             });
             langToggle.textContent = currentLang === 'ja' ? 'EN / JA' : 'JA / EN';
         }
@@ -134,75 +164,39 @@ document.addEventListener('DOMContentLoaded', () => {
     // Story Toggle
     // Needs to be global or attached to window if used inline? 
     // Actually, inline onclick="toggleStory()" looks for window.toggleStory.
+    // Story Toggle
     window.toggleStory = function () {
         const storyDiv = document.getElementById('full-story');
         const noteBtn = document.getElementById('read-more-btn');
 
-        if (storyDiv && storyDiv.classList.contains('hidden')) {
-            storyDiv.classList.remove('hidden');
-            storyDiv.classList.add('visible');
-            if (noteBtn) noteBtn.style.display = 'none';
+        if (storyDiv && noteBtn) {
+            const isHidden = storyDiv.classList.contains('hidden');
+
+            if (isHidden) {
+                // Open
+                storyDiv.classList.remove('hidden');
+                storyDiv.classList.add('visible');
+
+                // Update Button Metadata for "Close" state
+                noteBtn.setAttribute('data-ja', noteBtn.getAttribute('data-ja-close'));
+                noteBtn.setAttribute('data-en', noteBtn.getAttribute('data-en-close'));
+            } else {
+                // Close
+                storyDiv.classList.remove('visible');
+                storyDiv.classList.add('hidden');
+
+                // Update Button Metadata for "Open" state
+                noteBtn.setAttribute('data-ja', noteBtn.getAttribute('data-ja-open'));
+                noteBtn.setAttribute('data-en', noteBtn.getAttribute('data-en-open'));
+            }
+
+            // Reflect text immediately based on current language
+            // (Assuming currentLang is accessible here, effectively it is inside the closure or we check global)
+            // Since currentLang is defined inside DOMContentLoaded but outside this function, it IS accessible.
+            noteBtn.textContent = noteBtn.getAttribute(`data-${currentLang}`);
         }
     };
 
-    // Anniversary Logic
-    // [TEST MODE] Set target date to past to show "114514 DAY"
-    // const TARGET_DATE = new Date().getTime() - 10000;
-    const TARGET_DATE = new Date("2026-01-14T05:14:00+09:00").getTime();
-    const EXPIRATION_DATE = new Date("2026-01-15T00:00:00+09:00").getTime();
 
-    function checkAnniversary() {
-        const now = new Date().getTime();
-
-        // 1. Hide Link if expired
-        const navLink = document.getElementById('nav-countdown');
-        if (navLink) {
-            if (now >= EXPIRATION_DATE) {
-                navLink.remove();
-            }
-        }
-
-        // 2. Redirect/Countdown Logic (Only for countdown.html)
-        const timerElement = document.getElementById('timer');
-        if (timerElement) {
-            // If expired, wipe content and redirect
-            if (now >= EXPIRATION_DATE) {
-                document.body.innerHTML = '';
-                window.location.href = 'index.html';
-                return;
-            }
-
-            // Countdown Update Logic
-            function updateTimer() {
-                const currentTime = new Date().getTime();
-                const distance = TARGET_DATE - currentTime;
-
-                if (distance < 0) {
-                    timerElement.innerHTML = "114514 DAY";
-                    timerElement.style.color = "var(--accent-green)";
-                    timerElement.style.textShadow = "0 0 30px var(--accent-green)";
-                } else {
-                    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-                    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-                    const d = days.toString().padStart(2, '0');
-                    const h = hours.toString().padStart(2, '0');
-                    const m = minutes.toString().padStart(2, '0');
-                    const s = seconds.toString().padStart(2, '0');
-
-                    timerElement.innerText = `${d}:${h}:${m}:${s}`;
-                }
-            }
-
-            // Run immediately and set interval
-            updateTimer();
-            setInterval(updateTimer, 1000);
-        }
-    }
-
-    // Run date check immediately
-    checkAnniversary();
 
 });
