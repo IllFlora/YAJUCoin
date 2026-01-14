@@ -12,6 +12,7 @@
     --text-primary: #e0e0e0;
     --text-secondary: #a1a1aa;
     --font-primary: 'Noto Sans JP', sans-serif;
+    --font-display: 'Orbitron', sans-serif;
     --font-mono: 'Courier New', monospace;
 }
 
@@ -26,7 +27,7 @@ body {
     color: var(--text-primary);
     font-family: var(--font-primary);
     overflow-x: hidden;
-    line-height: 1.6;
+    line-height: 1.8;
 }
 
 /* Cyber Grid Background */
@@ -82,14 +83,15 @@ header {
     display: flex;
     align-items: center;
     gap: 0.8rem;
+    font-family: var(--font-display);
     font-weight: 900;
     font-size: 1.4rem;
-    letter-spacing: 1px;
+    letter-spacing: 0.05em;
     text-transform: uppercase;
 }
 
 .logo-container span {
-    text-shadow: 2px 2px 0px var(--accent-pink);
+    text-shadow: none;
 }
 
 .logo-img-sm {
@@ -107,16 +109,18 @@ nav ul {
 
 nav a {
     font-size: 0.9rem;
-    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    font-family: var(--font-display);
+    text-transform: uppercase;
     text-transform: uppercase;
     color: var(--text-secondary);
-    letter-spacing: 1px;
+    letter-spacing: 0.05em;
     position: relative;
 }
 
 nav a:hover {
     color: var(--accent-cyan);
-    text-shadow: 0 0 5px var(--accent-cyan);
+    text-shadow: 0 0 8px rgba(0, 255, 249, 0.4);
 }
 
 nav a::before {
@@ -243,12 +247,13 @@ nav a:hover::before {
 }
 
 .hero h1 {
+    font-family: var(--font-display);
     font-size: 5rem;
     font-weight: 900;
     margin-bottom: 0.5rem;
     color: #fff;
-    text-shadow: 4px 4px 0px var(--accent-purple);
-    letter-spacing: -2px;
+    text-shadow: 4px 4px 0px #000000;
+    letter-spacing: 0.02em;
     position: relative;
 }
 
@@ -317,6 +322,7 @@ nav a:hover::before {
 
 .btn {
     padding: 1rem 2.5rem;
+    font-family: var(--font-display);
     font-weight: 900;
     font-size: 1rem;
     cursor: pointer;
@@ -344,19 +350,21 @@ nav a:hover::before {
 
 /* Sections General */
 section {
-    padding: 6rem 2rem;
+    padding: 8rem 2rem;
     max-width: 1200px;
     margin: 0 auto;
 }
 
 .section-title {
+    font-family: var(--font-display);
     font-size: 3rem;
     margin-bottom: 4rem;
     text-align: center;
     position: relative;
     text-transform: uppercase;
+    letter-spacing: 0.1em;
     font-weight: 900;
-    text-shadow: 3px 3px 0px var(--accent-pink);
+    text-shadow: 3px 3px 0px #000000;
 }
 
 /* Concept Cards (Cyber Style) */
@@ -397,7 +405,7 @@ section {
     font-size: 1.8rem;
     margin-bottom: 1.5rem;
     color: var(--text-primary);
-    font-family: var(--font-mono);
+    font-family: var(--font-display);
     border-bottom: 2px solid rgba(255, 255, 255, 0.1);
     padding-bottom: 0.5rem;
     display: inline-block;
@@ -527,8 +535,20 @@ footer {
     /* Mobile Header - Horizontal Scroll Layout */
     header {
         padding: 0.5rem 1rem;
-        flex-direction: column;
-        gap: 0.5rem;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        gap: 0;
+    }
+
+    .logo-container {
+        font-size: 1.1rem;
+    }
+
+    .logo-img-sm {
+        width: 28px;
+        height: 28px;
     }
 
     .menu-toggle,
@@ -545,6 +565,10 @@ footer {
         display: block;
         backdrop-filter: none;
         padding: 0;
+        order: 3;
+        margin-top: 0.5rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        padding-top: 0.5rem;
     }
 
     nav ul {
@@ -575,24 +599,26 @@ footer {
 
     .header-actions {
         display: flex !important;
-        margin-top: 0.5rem;
-        width: 100%;
-        justify-content: center;
-        align-items: center;
-        padding-bottom: 0.5rem;
-        /* Ensure space before border */
+        width: auto;
+        margin-top: 0;
+        padding-bottom: 0;
+        gap: 0.5rem;
     }
 
-    /* Keep lang switch compact if we decide to show it,
-       but for now it is hidden in header-actions block above */
     .lang-switch {
-        padding: 0.2rem 0.6rem;
-        font-size: 0.7rem;
+        padding: 0.3rem 0.6rem;
+        font-size: 0.75rem;
+    }
+
+    .music-toggle {
+        margin-right: 0;
+        padding: 0.3rem 0.6rem;
+        font-size: 0.75rem;
     }
 
     /* Mobile Hero */
     .hero {
-        padding-top: 9rem;
+        padding-top: 7rem;
         padding-bottom: 2rem;
     }
 
@@ -670,5 +696,58 @@ footer {
         padding: 1rem;
         white-space: nowrap;
         /* Prevent awkward wrapping */
+    }
+}
+
+/* Loading Screen */
+#loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    z-index: 9999;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* Center vertically */
+    align-items: center;
+    /* Center horizontally */
+    transition: opacity 0.5s ease-out, visibility 0.5s;
+}
+
+#loader.loaded {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.console-text {
+    font-family: var(--font-mono);
+    color: var(--accent-green);
+    font-size: 1.2rem;
+    /* Slightly larger for single line */
+    line-height: 1.5;
+    white-space: pre-wrap;
+    text-shadow: 0 0 5px var(--accent-green);
+    text-align: center;
+}
+
+.console-text::after {
+    content: '_';
+    animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
     }
 }
