@@ -513,6 +513,25 @@ footer {
     font-family: var(--font-mono);
 }
 
+.credit {
+    margin-top: 0.75rem;
+    color: var(--text-secondary);
+    font-size: 0.7rem;
+    font-family: var(--font-mono);
+    letter-spacing: 0.08em;
+}
+
+.credit a {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+}
+
+.credit a:hover,
+.credit a:focus-visible {
+    color: var(--accent-cyan);
+}
+
 /* Utilities */
 @media (max-width: 768px) {
     .hero h1 {
